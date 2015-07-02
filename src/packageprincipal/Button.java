@@ -1,0 +1,39 @@
+package packageprincipal;
+
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+
+public class Button extends JButton implements ActionListener {
+	
+	
+	/**
+	 * Clase boton
+	 */
+	private static final long serialVersionUID = 1L;
+	private Calculo cal;
+	private int x,y;
+
+	public Button(Calculo cal_, int i, int j)
+	{
+		addActionListener( this );
+		setBackground(Color.DARK_GRAY);
+		x=i+1;
+		y=j+1;
+		cal=cal_;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		  setBackground(Color.pink);
+		  cal.introducirCel(x, y);
+	}
+	public void setColor(Color color) {
+		setBackground(color);
+	}
+	
+
+}
