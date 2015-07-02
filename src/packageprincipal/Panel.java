@@ -13,8 +13,8 @@ public class Panel extends JPanel{
 	private static final long serialVersionUID = 1L;
 	private Button botones[][];
 	private Calculo cal;
-	private final int N = 20;
-	private final int M = 20;
+	private final int N = 50;
+	private final int M = 50;
 
 	public Panel() { 
 		cal = new Calculo(this);
