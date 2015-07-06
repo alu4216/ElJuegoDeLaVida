@@ -7,8 +7,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 
 public class Button extends JButton implements ActionListener {
-	
-	
+
+
 	/**
 	 * Clase boton
 	 */
@@ -28,12 +28,16 @@ public class Button extends JButton implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		  setBackground(Color.pink);
-		  cal.introducirCel(x, y);
+		
+		int tipo = cal.introducirCel(x, y);
+		if(tipo == 1)
+			setBackground(Color.pink);
+		else
+			 setBackground(Color.DARK_GRAY);
 	}
 	public void setColor(Color color) {
 		setBackground(color);
 	}
-	
+
 
 }

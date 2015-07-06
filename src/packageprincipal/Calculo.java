@@ -17,25 +17,35 @@ public class Calculo {
 			}
 		}	
 	}
-	public void introducirCel(int i, int j) {
-		tableroCel[i][j] = new CelulaA();
+
+	public int introducirCel(int i, int j) {
+
+		if (tableroCel[i][j].gettipo() == 0) {
+			tableroCel[i][j] = new CelulaA();
+			return 1;
+		}
+		else {
+			tableroCel[i][j] = new Celula(panel);
+			return 0;
+		}
 	}
 
 	public void rellenarAleatorio(float porcentaje) {
-		
+
 		int total = panel.getN() * panel.getM();
 		int rellenar = (int) (total * porcentaje);
 		Random rnd = new Random(3816L);
 		for(int x=0; x<rellenar;x++) {
 			int i = rnd.nextInt(panel.getN());
 			int j = rnd.nextInt(panel.getM());
-			
+
 			introducirCel(i+1, j+1);
 			tableroCel[i+1][j+1].pintar(i, j);
-			
+
 		}
-		
+
 	}
+
 	public void actualizar() {
 
 		int matriz_aux[][] = new int [panel.getN()+2][panel.getM()+2];
@@ -51,7 +61,17 @@ public class Calculo {
 		}
 		act_interfaz(matriz_aux);
 	}
-	
+
+	public void limpiar() {
+		for (int i=1; i<panel.getN()+1;i++) {
+			for(int j=1;j<panel.getM()+1;j++) {
+				tableroCel[i][j] = new Celula(panel);
+				tableroCel[i][j].pintar(i-1, j-1);
+			}
+		}
+
+	}
+
 	private int vecinos(int i, int j) {
 		int cont =0;
 		if(tableroCel[i-1][j-1].getestado()==true) cont++;
@@ -64,7 +84,7 @@ public class Calculo {
 		if(tableroCel[i+1][j+1].getestado()==true) cont++;
 		return cont;
 	}
-	
+
 	private void act_interfaz(int matriz_aux[][]) {
 		for (int i=1; i<panel.getN()+1;i++) {
 			for(int j=1;j<panel.getM()+1;j++) {

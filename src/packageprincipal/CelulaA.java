@@ -6,7 +6,7 @@ public class CelulaA extends Celula{
 
 	public CelulaA() {
 		super(panel_);
-		
+		tipo = 1;
 		
 	}
 	public boolean getestado() {

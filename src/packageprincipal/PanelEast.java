@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,6 +20,7 @@ public class PanelEast extends JPanel{
 	private JButton aleatorio;
 	private JButton automatico;
 	private JButton parar;
+	private JButton reset;
 	private Panel panel;
 	private Calculo cal;
 	private HiloIGrafica hilo;
@@ -33,16 +33,19 @@ public class PanelEast extends JPanel{
 		aleatorio = new JButton("Aleatorio");
 		automatico = new JButton("Automático");
 		parar = new JButton("Parar");
+		reset = new JButton("Reset");
 		setPreferredSize(new Dimension(200,200));
 		setLayout(new FlowLayout());
 		manual.addActionListener(new NewAction());
 		aleatorio.addActionListener(new NewAction());
 		automatico.addActionListener(new NewAction());
 		parar.addActionListener(new NewAction());
+		reset.addActionListener(new NewAction());
 		add(manual);
 		add(aleatorio);
 		add(automatico);
 		add(parar);
+		add(reset);
 	}
 
 	private class NewAction implements ActionListener  {
@@ -61,11 +64,16 @@ public class PanelEast extends JPanel{
 			if(arg0.getSource() == automatico) {	
 				if (hilo == null)
 					hilo = new HiloIGrafica(cal);
-				hilo.start();
+				if(!hilo.isAlive())
+					hilo.start();
 			}
 			if(arg0.getSource() == parar) {	
 				hilo.stop();
 				hilo = null;
+			}
+			if(arg0.getSource() == reset) {	
+				hilo.stop();
+				cal.limpiar();				
 			}
 		}
 
