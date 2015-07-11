@@ -31,7 +31,7 @@ public class Button extends JButton implements ActionListener {
 		
 		int tipo = cal.introducirCel(x, y);
 		if(tipo == 1)
-			setBackground(Color.pink);
+			setBackground(Color.PINK);
 		else
 			 setBackground(Color.DARK_GRAY);
 	}

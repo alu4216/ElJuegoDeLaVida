@@ -8,8 +8,9 @@ import javax.swing.JPanel;
 public class Panel extends JPanel{
 
 	/**
-	 * Clase Panel, encargada de crear el panel de botones
+	 * Clase Panel, encargada de crear el panel de botones de celulas
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	private Button botones[][];
 	private Calculo cal;
@@ -23,7 +24,7 @@ public class Panel extends JPanel{
 		botones = new Button[N][M];
 		for(int i=0;i<N;i++) {
 			for(int j=0;j<M;j++) {
-				botones[i][j]= new Button(cal,i,j);
+				botones[i][j] = new Button(cal,i,j);
 			}
 		}
 		pintartablero();
@@ -36,6 +37,7 @@ public class Panel extends JPanel{
 			}
 		}
 	}
+	
 	public Button[][] getBotones() {
 		
 		return botones;

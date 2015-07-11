@@ -6,8 +6,7 @@ public class CelulaA extends Celula{
 
 	public CelulaA() {
 		super(panel_);
-		tipo = 1;
-		
+		tipo = 1;	
 	}
 	public boolean getestado() {
 		return true;
@@ -15,6 +14,5 @@ public class CelulaA extends Celula{
 	public void pintar(int i,int j) {
 		botones[i][j].setColor(Color.pink);
 	}
-
 
 }

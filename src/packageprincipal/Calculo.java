@@ -15,7 +15,7 @@ public class Calculo {
 			for(int j=0;j<panel.getM()+2;j++) {
 				tableroCel[i][j] = new Celula(panel);
 			}
-		}	
+		}
 	}
 
 	public int introducirCel(int i, int j) {
@@ -49,14 +49,20 @@ public class Calculo {
 	public void actualizar() {
 
 		int matriz_aux[][] = new int [panel.getN()+2][panel.getM()+2];
-
+		tableroCel[0][0].resettotalcel();
 		for (int i=1; i<panel.getN()+1;i++) {
 			for(int j=1;j<panel.getM()+1;j++) {
 				matriz_aux[i][j]= 0;
 				if(vecinos(i,j) < 2 || vecinos(i,j) > 3 ) 
 					matriz_aux[i][j] = -1;
-				else if(vecinos(i,j) == 3) 
+				else if(vecinos(i,j) == 3) {
 					matriz_aux[i][j] = 1;
+					tableroCel[i][j].uptotalcel();
+				}
+				else if (vecinos(i,j) == 2) {
+					if(tableroCel[i][j].getestado() == true)
+						tableroCel[i][j].uptotalcel();
+				}
 			}
 		}
 		act_interfaz(matriz_aux);
@@ -84,6 +90,11 @@ public class Calculo {
 		if(tableroCel[i+1][j+1].getestado()==true) cont++;
 		return cont;
 	}
+	
+	public int gettotalCel() {
+		// TODO Auto-generated method stub
+		return tableroCel[0][0].gettotalcel();
+	}
 
 	private void act_interfaz(int matriz_aux[][]) {
 		for (int i=1; i<panel.getN()+1;i++) {
@@ -101,5 +112,4 @@ public class Calculo {
 			}
 		}
 	}
-
 }

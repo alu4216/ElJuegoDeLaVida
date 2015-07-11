@@ -1,9 +1,9 @@
 package packageprincipal;
 
 import java.awt.BorderLayout;
-
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
+
 
 public class Frame extends JFrame {
 
@@ -23,9 +23,8 @@ public class Frame extends JFrame {
 		//Instancias de objetos a utilizar
 		panel = new Panel();
 		scroll= new JScrollPane();
-		panelS = new PanelSouth();
-		panelE = new PanelEast(panel);
-		
+		panelS = new PanelSouth(panel);
+		panelE = new PanelEast(panel,panelS);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		setLayout(new BorderLayout());
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

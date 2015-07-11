@@ -24,11 +24,17 @@ public class PanelEast extends JPanel{
 	private Panel panel;
 	private Calculo cal;
 	private HiloIGrafica hilo;
+	private HiloEstadisitca hiloE;
+	private PanelSouth panelS;
+	private SincroHilos sincro;
 
-	public PanelEast(Panel panel_) {
+	public PanelEast(Panel panel_,PanelSouth panelS_) {
 		panel = panel_;
+		panelS = panelS_;
+		sincro = new SincroHilos();
 		cal = panel.getCal();
-		hilo = new HiloIGrafica(cal);
+		hilo = new HiloIGrafica(cal,sincro);
+		hiloE = new HiloEstadisitca(cal, panelS,sincro);
 		manual = new JButton("Manual");
 		aleatorio = new JButton("Aleatorio");
 		automatico = new JButton("Automático");
@@ -63,17 +69,26 @@ public class PanelEast extends JPanel{
 			}
 			if(arg0.getSource() == automatico) {	
 				if (hilo == null)
-					hilo = new HiloIGrafica(cal);
+					hilo = new HiloIGrafica(cal,sincro);
 				if(!hilo.isAlive())
 					hilo.start();
+				if (hiloE == null)
+					hiloE = new HiloEstadisitca(cal, panelS,sincro);
+				if(!hiloE.isAlive())
+					hiloE.start();
 			}
 			if(arg0.getSource() == parar) {	
-				hilo.stop();
-				hilo = null;
+				if(hilo != null && hilo.isAlive()) {
+					hilo.stop();
+					hilo = null;	
+				}
+				if(hiloE != null && hiloE.isAlive()) {
+					hiloE.stop();
+					hiloE = null;	
+				}
 			}
 			if(arg0.getSource() == reset) {	
-				hilo.stop();
-				cal.limpiar();				
+				cal.limpiar();
 			}
 		}
 
